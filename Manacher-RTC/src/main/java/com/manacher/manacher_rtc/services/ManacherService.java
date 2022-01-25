@@ -1,6 +1,6 @@
 package com.manacher.manacher_rtc.services;
 
-import android.app.Activity;
+
 import android.content.Context;
 
 import com.manacher.manacher_rtc.interfaces.RTCObserver;
