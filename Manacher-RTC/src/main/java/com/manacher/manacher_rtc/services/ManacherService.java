@@ -1,6 +1,7 @@
 package com.manacher.manacher_rtc.services;
 
-import android.app.Activity;
+
+import android.content.Context;
 
 import com.manacher.manacher_rtc.interfaces.RTCObserver;
 import com.manacher.manacher_rtc.observers.CustomPeerConnectionObserver;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManacherService {
-    private Activity activity;
+    private Context activity;
     private PeerConnection peerConnection;
     private DataChannel localDataChannel;
     private PeerConnectionFactory pcFactory;
@@ -42,9 +43,19 @@ public class ManacherService {
     private Util util;
     private RTCObserver listener;
 
-    public ManacherService(Activity activity){
+    private static ManacherService instance;
+
+    public ManacherService(Context activity){
         this.activity = activity;
         this.initialized();
+    }
+
+    public static ManacherService initialized(Context context){
+        if(instance == null){
+            instance = new ManacherService(context);
+        }
+
+        return instance;
     }
 
     private void initialized(){
